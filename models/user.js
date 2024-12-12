@@ -25,7 +25,7 @@ const user = {
 //check to see if username is in use:
 async function userExists(user) {
   let sql = `
-    SELECT * FROM user
+    SELECT * FROM User
     WHERE username = "${user.username}"
   `
   return await con.query(sql)
@@ -46,7 +46,7 @@ async function register(user) {
   if(cUser.length > 0) throw Error("Username already in use.")
   
   let sql = `
-    INSERT INTO user (username, password, email)
+    INSERT INTO User (username, password, email)
     VALUES("${user.username}", "${user.password}", "${user.email}")
   `  
   await con.query(sql)
@@ -60,7 +60,7 @@ async function updateEmail(user) {
   if(cEmail) throw Error("Email already in use!!")
 
   let sql = `
-    UPDATE user SET email="${user.email}"
+    UPDATE User SET email="${user.email}"
     WHERE username="${user.username}"
   `
   await con.query(sql)
@@ -70,7 +70,7 @@ async function updateEmail(user) {
 
 async function getEmail(user) {
   let sql = `
-    SELECT email FROM user
+    SELECT email FROM User
     WHERE email="${user.email}"
   `
   let email = await con.query(sql)
@@ -80,7 +80,7 @@ async function getEmail(user) {
 //D for Delete - delete user account
 async function deleteAccount(user) {
   let sql = `
-    DELETE from user
+    DELETE from User
     WHERE username="${user.username}"
   `
   await con.query(sql)
@@ -89,7 +89,7 @@ async function deleteAccount(user) {
 // CRUD functions will go here 
 //R for READ -- get all users
 async function getAllUsers() {
-  let sql = `SELECT * FROM user;`
+  let sql = `SELECT * FROM User;`
   return await con.query(sql)
 }
 
