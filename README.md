@@ -6,13 +6,13 @@ Hello Dev is a project design to give users the opportunity to connect via a cha
 
 ## How our Database is designed 
 
-![Image](./ERD_HelloDev_Proj.png)
+![Image](./public/images/ERD_HelloDev_Proj.png)
 
 Simply put we only need our user and our comment and thats it!  
 
-![Image](3NF%20Hello_Dev.png)
+![Image](./public/images/3NF%20Hello_Dev.png)
 
 Below you will find our database implementation which is currently locally running
 
-![Image](./sqltables.png)
+![Image](./public/images/sqltables.png)
 
