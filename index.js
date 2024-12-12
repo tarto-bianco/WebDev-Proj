@@ -22,5 +22,5 @@ app.use('/users', userRoutes)
 app.use('/comment', commentRoutes)
 
 const PORT = process.env.PORT || 3000
-ß
+
 app.listen(PORT, () => console.log(`Server started!! Listening on port ${PORT}!!! :)`))
