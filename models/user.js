@@ -18,14 +18,14 @@ createTable()
 
 // USER Example:
 const user = {
-  Username: "cathy123",
-  Password: "icecream"
+  username: "cathy123",
+  password: "icecream"
 }
 
 //check to see if username is in use:
 async function userExists(user) {
   let sql = `
-    SELECT * FROM User
+    SELECT * FROM user
     WHERE username = "${user.username}"
   `
   return await con.query(sql)
