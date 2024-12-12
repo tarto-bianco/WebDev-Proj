@@ -1,0 +1,33 @@
+{
+  "name": "webdev-proj",
+  "version": "1.0.0",
+  "description": "package for webdev",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tarto-bianco/web-dev-socialmedia.git"
+  },
+  "keywords": [
+    "webdev",
+    "social",
+    "media"
+  ],
+  "author": "Zaafar Mahmood",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tarto-bianco/web-dev-socialmedia/issues"
+  },
+  "homepage": "https://github.com/tarto-bianco/web-dev-socialmedia#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mysql2": "^3.11.5"
+  }
+}
