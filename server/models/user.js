@@ -2,7 +2,7 @@ const con = require("./db_connect")
 
 async function createTable() {
   let sql = `CREATE TABLE IF NOT EXISTS User (
-    userID INT NOT NULL AUTO_INCREMENT,
+  userID INT NOT NULL AUTO_INCREMENT,
 	username VARCHAR(55) NOT NULL,
 	firstname VARCHAR(55) NOT NULL, 
 	lastname VARCHAR(55) NOT NULL, 
