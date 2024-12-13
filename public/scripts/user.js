@@ -62,7 +62,9 @@ function setCurrentUser(user) {
   
   function register(e) {
     e.preventDefault()
-  
+
+    console.log("registering")
+
     const user = {
       username: document.getElementById("username").value,
       password: document.getElementById("password").value,
@@ -70,6 +72,8 @@ function setCurrentUser(user) {
       lastName: document.getElementById("lname").value,
       email: document.getElementById("email").value,
     }
+
+    console.log(user);
   
     fetchData('/user/register', user, 'POST')
     .then(data => {
