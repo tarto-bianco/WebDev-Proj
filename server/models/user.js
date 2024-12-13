@@ -93,4 +93,19 @@ async function getAllUsers() {
   return await con.query(sql)
 }
 
-module.exports ={ getAllUsers, login, register, updateEmail, deleteAccount }
+// async function fetchData(route = '', data = {}, methodType) {
+//   const response = await fetch(`http://localhost:3000${route}`, {
+//     method: methodType,
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify(data)
+//   });
+//   if(response.ok) {
+//     return response.json();
+//   } else {
+//     throw await response.json();
+//   }
+// }
+
+module.exports ={ getAllUsers, login, register, updateEmail, deleteAccount, userExists}

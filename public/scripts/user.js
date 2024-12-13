@@ -33,20 +33,27 @@ function setCurrentUser(user) {
       username: document.getElementById("username").value,
       password: document.getElementById("password").value
     }
-  
-    fetchData('/user/login', user, 'POST')
+
+    console.log(user);
+
+
+  fetchData('/user/login', user, 'POST')
     .then(data => {
       if (!data.message) {
         setCurrentUser(data)
         window.location.href = 'main.html'
       } else {
-        let errorSection = document.querySelector("#login-form .error")
-        errorSection.innerText = data.message
+        let errorSection = document.querySelector("#loginForm .error")
+        if (errorSection) {
+          errorSection.innerText = data.message;
+        }
       }
     })
     .catch(err => {
-      let errorSection = document.querySelector("#login-form .error")
-      errorSection.innerText = err.message
+      let errorSection = document.querySelector("#loginForm .error")
+      if (errorSection) {
+        errorSection.innerText = err.message;
+      }
     });
   }
   
@@ -70,13 +77,15 @@ function setCurrentUser(user) {
         setCurrentUser(data)
         window.location.href = 'main.html'
       } else {
-        let errorSection = document.querySelector("#register-form .error")
+        let errorSection = document.querySelector("#registerForm .error")
         errorSection.innerText = data.message
       }
     })
     .catch(err => {
-      let errorSection = document.querySelector("#register-form .error")
-      errorSection.innerText = err.message
+      let errorSection = document.querySelector("#registerForm .error")
+      if (errorSection) {
+        errorSection.innerText = err.message;
+      }
     });
   }
   
