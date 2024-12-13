@@ -4,8 +4,8 @@ const path = require('path')
 
 app.use(express.json()); // parses JSON bodies
 
-const userRoutes = require("./server/routes/User")
-const commentRoutes = require("./server/routes/Comment")
+const userRoutes = require("./server/routes/user")
+const commentRoutes = require("./server/routes/comment")
 
 //CORS middleware
 app.use(function(req, res, next) {

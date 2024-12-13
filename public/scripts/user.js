@@ -14,8 +14,23 @@
 
 // }
 
+
+function setCurrentUser(user) {
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+function getCurrentUser() {
+    return JSON.parse(localStorage.getItem('user'));
+  }
+
+function removeCurrentUser() {
+    localStorage.removeItem('user');
+    }
+
 let loginForm = document.getElementById("loginForm")
 if(loginForm) loginForm.addEventListener('submit', login)
+
+import { fetchData } from "./main";
 
 function login(e) {
   e.preventDefault()
@@ -25,7 +40,17 @@ function login(e) {
     password: document.getElementById("password").value
   }
 
-  console.log(user)
+  fetchData('/user/login', user, 'POST')
+  .then(data => {
+    if(!data.message) {
+        window.location.href = 'index.html'
+    }
+  })
+  .catch(err => {
+    let errorSection = document.querySelector("#login-form .error")
+    errorSection.innerText = err.message
+    
+  });
 }
 
 
@@ -45,6 +70,19 @@ function register(e) {
         email: document.getElementById("email").value,
     
     }
+
+    fetchData('/user/register', user, 'POST')
+    .then(data => {
+        if(!data.message) {
+            setCurrentUser(data)
+            window.location.href = 'index.html'
+        }
+    })
+    .catch(err => {
+        let errorSection = document.querySelector("#register-form .error")
+        errorSection.innerText = err.message
+        
+    });
 
     console.log(user)
 }
