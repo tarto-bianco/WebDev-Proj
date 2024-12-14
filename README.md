@@ -13,14 +13,14 @@ The website gives the feel and vibe of an old school terminal page, with an adde
 
 ### Logging In
 
-Here's a snapshot of the login functionality:
+Here's a snapshot of the login functionality
 
 ![Image](./public/images/loginimg.png)
 
 
 ### Registering
 
-Registration is simple and streamlined:
+Registration is simple and streamlined
 
 ![Image](./public/images/register.png)
 

@@ -93,6 +93,22 @@ function setCurrentUser(user) {
     });
   }
   
+  let commentForm = document.getElementById("commentForm")
+  if(commentForm) commentForm.addEventListener('submit', postComment)
+    function postComment(e) {
+      e.preventDefault()
+
+      const comment = {
+        content: document.getElementById("terminalentry").value,
+        userID: getCurrentUser().userID,
+        username: getCurrentUser().username
+      }
+
+      console.log(comment);
+
+    }
+    
+  
   function fetchData(url, data, method) {
     return fetch(url, {
       method: method,
