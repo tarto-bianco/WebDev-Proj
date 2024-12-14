@@ -42,12 +42,7 @@
       if (!data.message) {
         setCurrentUser(data)
         window.location.href = 'main.html'
-      } else {
-        let errorSection = document.querySelector("#loginForm .error")
-        if (errorSection) {
-          errorSection.innerText = data.message;
-        }
-      }
+      } 
     })
     .catch(err => {
       let errorSection = document.querySelector("#loginForm .error")
@@ -80,9 +75,6 @@
       if (!data.message) {
         setCurrentUser(data)
         window.location.href = 'main.html'
-      } else {
-        let errorSection = document.querySelector("#registerForm .error")
-        errorSection.innerText = data.message
       }
     })
     .catch(err => {
