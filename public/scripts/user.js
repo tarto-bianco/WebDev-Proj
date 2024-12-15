@@ -84,33 +84,9 @@
       }
     });
   }
-  
-  let commentForm = document.getElementById("commentForm")
-  if(commentForm) commentForm.addEventListener('submit', postComment)
-    function postComment(e) {
-      e.preventDefault()
-
-      const comment = {
-        content: document.getElementById("terminalentry").value,
-        userID: getCurrentUser().userID,
-        username: getCurrentUser().username
-      }
-
-      console.log(comment);
-
-      fetchData('/comment/add', comment, 'POST')
-      .then(data => {
-        if (!data.message) {
-          displayComments()
-        }
-      })
-      .catch(err => {
-        console.error(err.message)
-      });
-
-    }
 
   
+
   async function fetchData(route = '', data = {}, methodType) {
     const response = await fetch(`http://localhost:3000${route}`, {
         method: methodType, // *POST, PUT, DELETE, etc.
