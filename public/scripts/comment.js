@@ -1,5 +1,39 @@
+// Display welcome message with username
+function displayWelcomeMessage() {
+  const user = getCurrentUser();
+  const welcomeSpan = document.getElementById("welcomeUser");
+  const logoutBtn = document.getElementById("logoutBtn");
+
+  if (user && welcomeSpan) {
+    welcomeSpan.innerText = `Welcome ${user.username}, `;
+    // Show logout button if user is logged in
+    if (logoutBtn) {
+      logoutBtn.style.display = 'inline';
+    }
+  }
+}
+
+// Logout function
+function logout(e) {
+  e.preventDefault();
+  localStorage.removeItem('user');
+  window.location.href = 'login.html';
+}
+
 let commentForm = document.getElementById("commentForm")
-if (commentForm) commentForm.addEventListener('submit', postComment)
+if (commentForm) {
+  commentForm.addEventListener('submit', postComment)
+  // Load comments when page loads
+  displayComments()
+  // Display welcome message
+  displayWelcomeMessage()
+}
+
+// Add logout event listener
+let logoutBtn = document.getElementById("logoutBtn")
+if (logoutBtn) {
+  logoutBtn.addEventListener('click', logout)
+}
 
 function postComment(e) {
   e.preventDefault()
@@ -19,6 +53,7 @@ function postComment(e) {
   fetchData('/comment/add', comment, 'POST')
   .then(data => {
     if (!data.message) {
+      document.getElementById("terminalentry").value = '' // Clear input
       displayComments()
     }
   })
@@ -44,17 +79,23 @@ function displayComments() {
 }
 
 async function fetchData(route = '', data = {}, methodType) {
-  const response = await fetch(`http://localhost:3000${route}`, {
-      method: methodType, // *POST, PUT, DELETE, etc.
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data) // body data type must match "Content-Type" header
-    });
-    if (response.ok) {
-      return await response.json(); // parses JSON response into native JavaScript objects
-    } else {
-      throw await response.json();
+  const options = {
+    method: methodType,
+    headers: {
+      'Content-Type': 'application/json'
     }
+  };
+
+  // Only add body for non-GET requests
+  if (methodType !== 'GET') {
+    options.body = JSON.stringify(data);
   }
+
+  const response = await fetch(`http://localhost:3000${route}`, options);
+  if (response.ok) {
+    return await response.json();
+  } else {
+    throw await response.json();
+  }
+}
   

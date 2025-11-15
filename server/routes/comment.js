@@ -3,7 +3,7 @@ const Comment = require("../models/comment")
 const router = express.Router()
 
 router
-  .get('/getComments', async (req, res) => {
+  .get('/all', async (req, res) => {
     try {
       const comments = await Comment.getAllComments()
       res.send(comments)
@@ -12,7 +12,7 @@ router
     }
   })
 
-  .post('/addComment', async (req, res) => {
+  .post('/add', async (req, res) => {
     try {
       let newComment = await Comment.addComment(req.body)
       res.send(newComment)

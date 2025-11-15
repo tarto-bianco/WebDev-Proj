@@ -44,9 +44,14 @@ async function addComment(comment) {
   return newComment
 }
 
-// READ - Get all comments
+// READ - Get all comments with username
 async function getAllComments() {
-  let sql = `SELECT * FROM Comment;`
+  let sql = `
+    SELECT Comment.*, User.username
+    FROM Comment
+    LEFT JOIN User ON Comment.userID = User.userID
+    ORDER BY Comment.commentID ASC
+  `
   return await con.query(sql)
 }
 
@@ -76,6 +81,18 @@ async function deleteComment(commentID) {
     WHERE commentID = ${commentID}
   `
   await con.query(sql)
+}
+
+// Get the latest comment by a specific user
+async function getLatestCommentByUser(userID) {
+  let sql = `
+    SELECT * FROM Comment
+    WHERE userID = ${userID}
+    ORDER BY commentID DESC
+    LIMIT 1
+  `
+  let result = await con.query(sql)
+  return result[0]
 }
 
 module.exports = { addComment, getAllComments, updateComment, deleteComment }

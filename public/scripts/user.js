@@ -42,9 +42,13 @@
       if (!data.message) {
         setCurrentUser(data)
         window.location.href = 'main.html'
-      } 
+      }
     })
     .catch(err => {
+      // Show popup alert
+      alert('Login Failed: ' + err.message);
+
+      // Also display error in form if error section exists
       let errorSection = document.querySelector("#loginForm .error")
       if (errorSection) {
         errorSection.innerText = err.message;
@@ -78,6 +82,10 @@
       }
     })
     .catch(err => {
+      // Show popup alert
+      alert('Registration Failed: ' + err.message);
+
+      // Also display error in form if error section exists
       let errorSection = document.querySelector("#registerForm .error")
       if (errorSection) {
         errorSection.innerText = err.message;
@@ -90,16 +98,22 @@
   
 
   async function fetchData(route = '', data = {}, methodType) {
-    const response = await fetch(`http://localhost:3000${route}`, {
-        method: methodType, // *POST, PUT, DELETE, etc.
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data) // body data type must match "Content-Type" header
-      });
-      if (response.ok) {
-        return await response.json(); // parses JSON response into native JavaScript objects
-      } else {
-        throw await response.json();
+    const options = {
+      method: methodType,
+      headers: {
+        'Content-Type': 'application/json'
       }
+    };
+
+    // Only add body for non-GET requests
+    if (methodType !== 'GET') {
+      options.body = JSON.stringify(data);
     }
+
+    const response = await fetch(`http://localhost:3000${route}`, options);
+    if (response.ok) {
+      return await response.json();
+    } else {
+      throw await response.json();
+    }
+  }

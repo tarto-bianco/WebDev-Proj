@@ -44,11 +44,11 @@ async function login(user) {
 async function register(user) {
   let cUser = await userExists(user)
   if(cUser.length > 0) throw Error("Username already in use.")
-  
+
   let sql = `
     INSERT INTO User (username, password, email, firstname, lastname)
-    VALUES("${user.username}", "${user.password}", "${user.email}", "${user.firstname}", "${user.lastname}")
-  `  
+    VALUES("${user.username}", "${user.password}", "${user.email}", "${user.firstName}", "${user.lastName}")
+  `
   await con.query(sql)
   let newUser = await login(user)
   return newUser //issue fixed from class: removed [0] since login function returns this already
